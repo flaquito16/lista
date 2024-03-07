@@ -1,22 +1,23 @@
 import React from 'react'
+import { Task } from '../Task/Task'
 import {useRef ,useState } from 'react'
 
-
+let counter=0
 
 export const LastTask = () => {
   const myReference = useRef('')
   const [tasks, setTasks] = useState ([])
 
-  const CreationTaks=()=>{
+  const CreationTask=()=>{
     let response=myReference.current.value
     console.log(response);
     counter++
-    const NewTaks={
+    const NewTask={
       _id: counter,
       takss: response
     }
   
-     setTakks([...tasks, NewTaks])
+     setTasks([...tasks, NewTask])
   }
 
   return (
@@ -24,14 +25,14 @@ export const LastTask = () => {
     
    <div className='notes'>
    <input ref={myReference} type="text" placeholder='ingresa una tarea' />
-   <button onClick={CreationTaks}>crear tarea</button>
+   <button onClick={CreationTask}>crear tarea</button>
    </div>
    <div className="ContentTaks">
         {
             tasks.map(TAks=>(
-            <Taks 
+            <Task 
             key={TAks._id}
-            component={TAks.takss}/>
+            content={TAks.takss}/>
           ))
         }
       </div>
